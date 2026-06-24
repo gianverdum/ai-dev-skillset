@@ -1,0 +1,15 @@
+# Skillset development artifacts (not part of the distributed template)
+.spec/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
