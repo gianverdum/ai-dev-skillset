@@ -1,6 +1,6 @@
 ---
 name: naming-structure-php
-description: Padrão de nomenclatura, estrutura e ambiente para projetos PHP quando não houver convenção local mais específica. Use quando criar/alterar projeto PHP, APIs Laravel/Symfony, bibliotecas, CLIs ou módulos web. Palavras-gatilho: "PHP", "Laravel", "Symfony", "Composer", "PHPUnit", "Pest", "composer.json", `.php`. Garante: `PascalCase` para classes/interfaces/traits/enums, `camelCase` para métodos/funções/variáveis, `UPPER_SNAKE_CASE` para constantes; namespaces PSR-4; layout `src/`+`tests/<Tipo>/<Namespace>`; testes com sufixo `Test`; PHP_CodeSniffer (PSR-12) + PHP-CS-Fixer (ou Laravel Pint em Laravel); nome de namespace reflete domínio (sufixos `Cli`/`Api`/`Rest` só em pacotes de entrega).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos PHP quando não houver convenção local mais específica. Use quando criar/alterar projeto PHP, APIs Laravel/Symfony, bibliotecas, CLIs ou módulos web. Palavras-gatilho: "PHP", "Laravel", "Symfony", "Composer", "PHPUnit", "Pest", "composer.json", `.php`. Garante: `PascalCase` para classes/interfaces/traits/enums, `camelCase` para métodos/funções/variáveis, `UPPER_SNAKE_CASE` para constantes; namespaces PSR-4; layout `src/`+`tests/<Tipo>/<Namespace>`; testes com sufixo `Test`; PHP_CodeSniffer (PSR-12) + PHP-CS-Fixer (ou Laravel Pint em Laravel); nome de namespace reflete domínio (sufixos `Cli`/`Api`/`Rest` só em pacotes de entrega).'
 ---
 
 # PHP Naming And Structure
@@ -37,3 +37,16 @@ Use esta rule ao criar ou reorganizar projetos PHP, APIs, bibliotecas, CLIs ou m
 - Valide com o runner de testes configurado, normalmente PHPUnit ou Pest.
 - Nao dependa de pacotes globais quando o projeto puder declarar ferramentas em `composer.json`.
 - Linter/formatter padrao: `PHP_CodeSniffer` (`phpcs`) com regra `PSR-12` para lint de estilo, e `PHP-CS-Fixer` para formatacao automatica. Alternativa moderna: `Laravel Pint` (em projetos Laravel) ou `phpcbf` para correcao. Em projeto novo, instale ao menos um pelo Composer (`composer require --dev squizlabs/php_codesniffer friendsofphp/php-cs-fixer`) e declare scripts `lint`/`format` em `composer.json`.
+
+## Checklist
+
+- `PascalCase` em classes, interfaces, traits e enums; `camelCase` em metodos e variaveis; `UPPER_SNAKE_CASE` em constantes.
+- Namespaces PSR-4 coerentes com `composer.json`, e arquivo com o mesmo nome da classe.
+- Namespace de dominio sem sufixo de interface; `Cli`, `Api` e `Rest` so no nome publicado ou em pacote de entrega.
+- `src/` para producao quando nao houver layout de framework, e a estrutura do framework respeitada quando houver.
+- `tests/<Tipo>/<Namespace>/<Classe>Test.php` espelhando `src/`, agrupado por `Unit`, `Integration`, `Feature` e `E2E`.
+- `composer.json` e `composer.lock` na raiz do pacote.
+- Dominio e casos de uso separados de controllers, commands, ORM, filas e clients externos.
+- `phpcs` com PSR-12 e PHP-CS-Fixer (ou Pint em Laravel) declarados no `composer.json`, com scripts `lint` e `format` executados.
+- Suite de testes executada no runner configurado.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

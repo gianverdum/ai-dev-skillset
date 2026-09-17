@@ -1,6 +1,6 @@
 ---
 name: naming-structure-python
-description: Padrão de nomenclatura, estrutura e ambiente para projetos Python quando não houver convenção local mais específica. Use quando criar/alterar projeto Python, módulos, pacotes, testes ou CLIs. Palavras-gatilho: "Python", "uv", "pyproject.toml", "pytest", "ruff", "pacote", "módulo Python", "venv", `.py`. Garante: `snake_case` para módulos/funções/variáveis, `PascalCase` para classes/exceções, `UPPER_SNAKE_CASE` para constantes; layout `src/<pacote>` com `tests/<tipo>/<espelho>` agrupados por tipo (`unit/integration/e2e/contract/`); `uv` como gerenciador (não pip global), `pyproject.toml` com `[dependency-groups] dev`; `ruff` como linter+formatter padrão (não flake8+black em projeto novo); `requires-python` declarado; nome do pacote reflete domínio (sem sufixo `_cli`/`_api`/`_service` — só no nome publicado).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos Python quando não houver convenção local mais específica. Use quando criar/alterar projeto Python, módulos, pacotes, testes ou CLIs. Palavras-gatilho: "Python", "uv", "pyproject.toml", "pytest", "ruff", "pacote", "módulo Python", "venv", `.py`. Garante: `snake_case` para módulos/funções/variáveis, `PascalCase` para classes/exceções, `UPPER_SNAKE_CASE` para constantes; layout `src/<pacote>` com `tests/<tipo>/<espelho>` agrupados por tipo (`unit/integration/e2e/contract/`); `uv` como gerenciador (não pip global), `pyproject.toml` com `[dependency-groups] dev`; `ruff` como linter+formatter padrão (não flake8+black em projeto novo); `requires-python` declarado; nome do pacote reflete domínio (sem sufixo `_cli`/`_api`/`_service` — só no nome publicado).'
 ---
 
 # Python Naming And Structure
@@ -83,3 +83,15 @@ Notas:
 - Remova a secao `[project.scripts]` quando o projeto nao expoe CLI.
 - Remova `[tool.pytest.ini_options]` e `[tool.coverage.run]` quando a stack de testes nao for `pytest` ou quando a skill de cobertura nao se aplicar.
 - Use `uv add <pacote>` para runtime e `uv add --dev <pacote>` para ferramentas; isso mantem `[project] dependencies` e `[dependency-groups] dev` sincronizados com `uv.lock`.
+
+## Checklist
+
+- `snake_case` em modulos, funcoes e variaveis; `PascalCase` em classes e excecoes; `UPPER_SNAKE_CASE` em constantes.
+- `pyproject.toml`, `uv.lock`, `README.md`, `src/` e `tests/` na raiz do repositorio, sem pasta com o nome do projeto envolvendo `src/`.
+- Pacote em `src/<pacote>`, com nome de dominio; sufixo de entrega so em `[project] name`.
+- Camadas `domain`, `application` e `interface` presentes quando ha regra de negocio, com o entrypoint CLI na interface e o script declarado em `pyproject.toml`.
+- `tests/<tipo>/` espelhando `src/<pacote>`, agrupado por `unit`, `integration`, `contract` e `e2e`.
+- Dependencias declaradas por `uv add` e `uv add --dev`, com `uv.lock` sincronizado; nada instalado globalmente.
+- Comandos executados com `uv run`.
+- `ruff check` e `ruff format` rodados sem pendencia, ou a stack legada preservada quando ja existia.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

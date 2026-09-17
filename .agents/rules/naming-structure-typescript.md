@@ -1,6 +1,6 @@
 ---
 name: naming-structure-typescript
-description: Padrão de nomenclatura, estrutura, tipagem e ambiente para projetos TypeScript quando não houver convenção local mais específica. Use quando criar/alterar projeto TS, módulos, componentes React/Vue, APIs, CLIs ou bibliotecas. Palavras-gatilho: "TypeScript", "TS", "yarn", "pnpm", "npm", "Node.js", "tsconfig", "eslint", "biome", "vitest", "jest", `.ts`, `.tsx`. Garante: `camelCase` para variáveis/funções, `PascalCase` para classes/tipos/componentes, arquivos `kebab-case.ts`; `yarn` como gerenciador default (não npm em projeto novo); `engines.node` + `.nvmrc` declarados; última versão estável de TS/Node; ESLint+typescript-eslint OU Biome (não só `tsc --noEmit` como lint); `strict: true` + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes` no tsconfig; tests unitários colocalizados (`foo.test.ts`); `tests/<tipo>/<espelho>` para integration/e2e; **proibição de `any`** (use `unknown` + narrow); nome do pacote reflete domínio (sufixo `-cli`/`-api` só em `package.json name`).
+description: 'Padrão de nomenclatura, estrutura, tipagem e ambiente para projetos TypeScript quando não houver convenção local mais específica. Use quando criar/alterar projeto TS, módulos, componentes React/Vue, APIs, CLIs ou bibliotecas. Palavras-gatilho: "TypeScript", "TS", "yarn", "pnpm", "npm", "Node.js", "tsconfig", "eslint", "biome", "vitest", "jest", `.ts`, `.tsx`. Garante: `camelCase` para variáveis/funções, `PascalCase` para classes/tipos/componentes, arquivos `kebab-case.ts`; `yarn` como gerenciador default (não npm em projeto novo); `engines.node` + `.nvmrc` declarados; última versão estável de TS/Node; ESLint+typescript-eslint OU Biome (não só `tsc --noEmit` como lint); `strict: true` + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes` no tsconfig; tests unitários colocalizados (`foo.test.ts`); `tests/<tipo>/<espelho>` para integration/e2e; **proibição de `any`** (use `unknown` + narrow); nome do pacote reflete domínio (sufixo `-cli`/`-api` só em `package.json name`).'
 ---
 
 # TypeScript Naming And Structure
@@ -122,3 +122,17 @@ function label(status: Status): string {
 - Linter padrao: `ESLint` com `typescript-eslint` (configuracao recomendada). Alternativa moderna: `Biome` (cobre lint + format em uma ferramenta). Em projeto novo, instale ESLint + typescript-eslint + plugin de prettier OU instale Biome; nao deixe o projeto sem linter. O script `lint` deve invocar a ferramenta real (`eslint` ou `biome check`), nao ser alias de `tsc --noEmit`. `typecheck` (TypeScript) e `lint` (ESLint/Biome) sao validacoes diferentes e ficam em scripts separados.
 - Formatter padrao: `Prettier` quando o linter for ESLint, ou `biome format` quando o linter for Biome. Declare script `format` em `package.json`.
 - Nao misture ESM e CommonJS sem uma razao explicita do projeto.
+
+## Checklist
+
+- `camelCase` em variaveis e funcoes; `PascalCase` em classes, tipos e componentes; arquivos de modulo em `kebab-case.ts`.
+- Nenhum tipo generico `Data`, `Payload` ou `Config` sem contexto de dominio.
+- Codigo de producao em `src/`, com regra de negocio separada de handlers, componentes e adapters.
+- Teste unitario colocalizado; `tests/<tipo>/` espelhando `src/` para integracao, contrato e e2e.
+- **Nenhum `any`** — explicito, `as any`, `any[]`, retorno, parametro ou `Record<string, any>`. Valor desconhecido entra como `unknown` e e estreitado por type guard ou schema.
+- Excecao de `any` por biblioteca sem tipos esta em escopo de uma linha, com justificativa inline, sem `@ts-ignore` em massa.
+- `strict: true` no `tsconfig.json`, com `noUncheckedIndexedAccess` e `exactOptionalPropertyTypes` avaliados.
+- Regras `@typescript-eslint/no-explicit-any` e `no-unsafe-*` ativas, ou `noExplicitAny` no Biome.
+- Scripts `typecheck` e `lint` separados; `lint` invoca a ferramenta real, nao `tsc --noEmit`.
+- `package.json`, `tsconfig.json` e um unico lockfile na raiz; versao do Node declarada em `engines.node` e/ou `.nvmrc`.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

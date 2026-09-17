@@ -35,6 +35,7 @@ Procedimentos acionáveis carregados sob demanda pelo agente, baseados em palavr
 | `workflow-iniciar-aplicacao` | Bootstrap de projeto novo (toolchain, runtime, manifest) |
 | `workflow-gerenciar-dependencias` | Add/upgrade/remove via gerenciador padrão de cada stack |
 | `workflow-criar-skills` | Meta-skill: como escrever/manter skills (description forte, triggers, anti-padrões detectáveis) |
+| `workflow-criar-rules` | Meta-skill do par: como escrever/manter rules (frontmatter que parseia, quatro seções obrigatórias, linter nomeado) |
 | `documentation-modulos-projeto` | Quando documentar módulos e o que NÃO documentar |
 | `greeting-bom-dia-combatente` | Saudação inicial obrigatória (verifica que o triage de skills está funcionando) |
 
@@ -51,6 +52,7 @@ Convenções estáticas carregadas conforme a linguagem detectada:
 - `naming-structure-java.md` — layout Maven/Gradle padrão, Checkstyle + Spotless.
 - `naming-structure-csharp.md` — analyzers do SDK com `TreatWarningsAsErrors`, `dotnet format`.
 - `naming-structure-php.md` — PSR-4 + PSR-12, PHP_CodeSniffer + PHP-CS-Fixer (ou Laravel Pint).
+- `naming-structure-c.md` — prefixo de módulo em símbolo externo (C não tem namespace), erro como `enum` em inglês, retorno de `malloc`/`ioctl` checado, liberação por `goto cleanup`, `-Wall -Wextra -Werror` + sanitizers, Meson + Ninja como build default.
 
 ### Templates (`templates/`)
 
@@ -137,6 +139,17 @@ Para adicionar um provider novo, edite o array `providers=(…)` em `scripts/syn
 5. Rode `./scripts/sync-skills.sh` para propagar para os providers.
 
 Veja `.agents/skills/workflow-criar-skills/SKILL.md` — é a meta-skill que documenta o processo, validada empiricamente.
+
+## Criando suas próprias rules
+
+1. Copie `templates/rule/RULE.md` para `.agents/rules/<prefixo>-<nome>.md`.
+2. **Mantenha a `description` entre aspas simples.** Ela contém `": "` em "Palavras-gatilho:" e "Garante:", e escalar YAML sem aspas quebra o parser — a rule para de carregar.
+3. Rule de linguagem tem quatro seções obrigatórias, nessa ordem: `Precedencia`, `Nomenclatura`, `Estrutura` e `Ambiente`. A seção extra é onde a rule deixa de ser genérica (`Tipagem` em TypeScript, `Erro, recurso e memoria` em C).
+4. Nomeie a ferramenta: "configure um linter" não é regra, é sugestão.
+5. Termine com `## Checklist` de itens conferíveis.
+6. Rode `./scripts/sync-skills.sh`.
+
+Veja `.agents/skills/workflow-criar-rules/SKILL.md` — traz a tabela de decisão rule × skill, o comando de validação de frontmatter e os anti-padrões detectáveis por grep.
 
 ## Princípio de design
 

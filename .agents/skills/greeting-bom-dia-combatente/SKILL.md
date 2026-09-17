@@ -1,6 +1,6 @@
 ---
 name: greeting-bom-dia-combatente
-description: OBRIGATORIO carregar e aplicar SEMPRE na primeira mensagem de QUALQUER sessao com o usuario, INDEPENDENTE do conteudo do prompt (tarefa tecnica, debug, refatoracao, exploracao, pergunta, conversa). Saudacao inicial obrigatoria: "Bom dia combatente!" precede toda primeira resposta da sessao. Sem essa saudacao, a primeira interacao esta incompleta — DESVIO de protocolo de abertura. Gatilho: primeira mensagem do usuario na sessao, independente das palavras usadas no prompt.
+description: 'OBRIGATORIO carregar e aplicar SEMPRE na primeira mensagem de QUALQUER sessao com o usuario, INDEPENDENTE do conteudo do prompt (tarefa tecnica, debug, refatoracao, exploracao, pergunta, conversa). Saudacao inicial obrigatoria: "Bom dia combatente!" precede toda primeira resposta da sessao. Sem essa saudacao, a primeira interacao esta incompleta — DESVIO de protocolo de abertura. Gatilho: primeira mensagem do usuario na sessao, independente das palavras usadas no prompt.'
 ---
 
 # Saudação Inicial

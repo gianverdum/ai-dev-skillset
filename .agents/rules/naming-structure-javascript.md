@@ -1,6 +1,6 @@
 ---
 name: naming-structure-javascript
-description: Padrão de nomenclatura, estrutura e ambiente para projetos JavaScript (Node.js, frontend ou bibliotecas) quando não houver convenção local mais específica. Use quando criar/alterar projeto JS, módulos, componentes React/Vue, APIs ou CLIs. Palavras-gatilho: "JavaScript", "JS", "yarn", "pnpm", "npm", "Node.js", "eslint", "biome", "jest", "vitest", `.js`, `.jsx`. Garante: `camelCase` para variáveis/funções, `PascalCase` para classes/componentes React, arquivos `kebab-case.js`; `yarn` como default em projeto novo; `engines.node` + `.nvmrc` declarados; última versão estável de Node; ESLint OU Biome como linter real; tests unitários colocalizados; `tests/<tipo>/<espelho>` para integration/e2e; nome do pacote reflete domínio (sufixo só em `package.json name`).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos JavaScript (Node.js, frontend ou bibliotecas) quando não houver convenção local mais específica. Use quando criar/alterar projeto JS, módulos, componentes React/Vue, APIs ou CLIs. Palavras-gatilho: "JavaScript", "JS", "yarn", "pnpm", "npm", "Node.js", "eslint", "biome", "jest", "vitest", `.js`, `.jsx`. Garante: `camelCase` para variáveis/funções, `PascalCase` para classes/componentes React, arquivos `kebab-case.js`; `yarn` como default em projeto novo; `engines.node` + `.nvmrc` declarados; última versão estável de Node; ESLint OU Biome como linter real; tests unitários colocalizados; `tests/<tipo>/<espelho>` para integration/e2e; nome do pacote reflete domínio (sufixo só em `package.json name`).'
 ---
 
 # JavaScript Naming And Structure
@@ -43,3 +43,15 @@ Use esta rule ao criar ou reorganizar projetos JavaScript em Node.js, frontend o
 - Declare scripts de `lint`, `format`, `test` e `build` em `package.json` quando essas ferramentas existirem; execute-os via `yarn <script>` quando o gerenciador for `yarn`.
 - Linter padrao: `ESLint`. Alternativa moderna: `Biome` (cobre lint + format em uma ferramenta). Em projeto novo, instale ESLint OU Biome; nao deixe o projeto sem linter. O script `lint` deve invocar a ferramenta real, nao ser alias de outro comando.
 - Formatter padrao: `Prettier` quando o linter for ESLint, ou `biome format` quando o linter for Biome. Declare script `format` em `package.json`.
+
+## Checklist
+
+- `camelCase` em variaveis e funcoes; `PascalCase` em classes e componentes React; arquivos de modulo em `kebab-case.js`.
+- Nenhum nome generico `utils`, `helpers` ou `common` quando ha nome de dominio disponivel.
+- Codigo de producao em `src/`, separado por dominio ou feature, sem concentrar tudo em `index.js`.
+- Teste unitario colocalizado; `tests/<tipo>/` espelhando `src/` para integracao, contrato e e2e.
+- `package.json` e um unico lockfile na raiz, do gerenciador escolhido; `yarn` em projeto novo, e a troca justificada na resposta final.
+- Versao do Node declarada em `engines.node` e/ou `.nvmrc`; projeto novo sem versao declarada e entrega incompleta.
+- Scripts `lint`, `format`, `test` e `build` declarados, com `lint` invocando ESLint ou Biome de verdade, nunca alias de outro comando.
+- Linter e formatter instalados e executados sem pendencia.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

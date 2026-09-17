@@ -1,6 +1,6 @@
 ---
 name: naming-structure-rust
-description: Padrão de nomenclatura, estrutura e ambiente para projetos Rust quando não houver convenção local mais específica. Use quando criar/alterar projeto Rust, crates, bibliotecas, CLIs ou serviços. Palavras-gatilho: "Rust", "cargo", "Cargo.toml", "clippy", "rustfmt", "crate", "src/lib.rs", "src/main.rs", `.rs`. Garante: `snake_case` para arquivos/módulos/funções, `PascalCase` para structs/enums/traits, `SCREAMING_SNAKE_CASE` para constantes; crates em `kebab-case` no manifesto; layout `src/lib.rs`/`src/main.rs`/`src/bin/<nome>.rs`; tests unitários em módulos `#[cfg(test)]` colocalizados, integration em `tests/`; `cargo clippy -D warnings` como linter; `cargo fmt` antes de fechar; nome do crate reflete domínio (sufixo `-cli`/`-api` só em crates binários em workspace).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos Rust quando não houver convenção local mais específica. Use quando criar/alterar projeto Rust, crates, bibliotecas, CLIs ou serviços. Palavras-gatilho: "Rust", "cargo", "Cargo.toml", "clippy", "rustfmt", "crate", "src/lib.rs", "src/main.rs", `.rs`. Garante: `snake_case` para arquivos/módulos/funções, `PascalCase` para structs/enums/traits, `SCREAMING_SNAKE_CASE` para constantes; crates em `kebab-case` no manifesto; layout `src/lib.rs`/`src/main.rs`/`src/bin/<nome>.rs`; tests unitários em módulos `#[cfg(test)]` colocalizados, integration em `tests/`; `cargo clippy -D warnings` como linter; `cargo fmt` antes de fechar; nome do crate reflete domínio (sufixo `-cli`/`-api` só em crates binários em workspace).'
 ---
 
 # Rust Naming And Structure
@@ -38,3 +38,16 @@ Use esta rule ao criar ou reorganizar projetos Rust, bibliotecas, CLIs ou servic
 - Valide com `cargo test`.
 - Linter padrao: `cargo clippy` (parte do toolchain Rust). Trate avisos do clippy como erros no fluxo do agente; ative `-D warnings` em CI quando aplicavel. Em projeto novo, declare a tarefa `clippy` no manifesto/Makefile/justfile.
 - Formatter padrao: `cargo fmt` (rustfmt, parte do toolchain). Rode antes de encerrar a tarefa.
+
+## Checklist
+
+- `snake_case` em arquivos, modulos, funcoes e variaveis; `PascalCase` em structs, enums e traits; `SCREAMING_SNAKE_CASE` em constantes e statics.
+- Crate em `kebab-case` no `Cargo.toml`, importado como `snake_case`.
+- Nome do crate de biblioteca reflete o dominio; `-cli` e `-api` so em crate binario do workspace.
+- Layout `src/lib.rs`, `src/main.rs` ou `src/bin/<nome>.rs` conforme o tipo de crate.
+- Teste unitario em modulo `tests` proximo ao codigo; integracao em `tests/`, agrupada por tipo quando houver mais de um.
+- `Cargo.lock` versionado em aplicacao e CLI.
+- Dominio separado de IO, HTTP, banco e adapters quando ha regra de negocio.
+- `cargo fmt` rodado e `cargo clippy` limpo, com `-D warnings` em CI.
+- `cargo test` executado.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

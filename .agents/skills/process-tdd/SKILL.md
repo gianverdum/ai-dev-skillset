@@ -1,6 +1,6 @@
 ---
 name: process-tdd
-description: OBRIGATORIO em qualquer tarefa que altera comportamento de software. Desenvolvimento guiado por testes (TDD) — teste primeiro, implementação depois. Use sempre que o agente for desenvolver, alterar, corrigir, refatorar ou estender software. Palavras-gatilho: "implemente", "crie", "adicione", "corrija", "refatore", "altere", "estenda", "feature", "bug", "fix", "regra", "validação", "cálculo", "use case". Garante: teste falhando antes da implementação, implementação mínima para passar, refator com suite verde, e2e obrigatório quando há persistência externa ou entrypoint executável. Sem ciclo Red-Green-Refactor seguido, mudança de comportamento foi feita sem rede de segurança — DESVIO.
+description: 'OBRIGATORIO em qualquer tarefa que altera comportamento de software. Desenvolvimento guiado por testes (TDD) — teste primeiro, implementação depois. Use sempre que o agente for desenvolver, alterar, corrigir, refatorar ou estender software. Palavras-gatilho: "implemente", "crie", "adicione", "corrija", "refatore", "altere", "estenda", "feature", "bug", "fix", "regra", "validação", "cálculo", "use case". Garante: teste falhando antes da implementação, implementação mínima para passar, refator com suite verde, e2e obrigatório quando há persistência externa ou entrypoint executável. Sem ciclo Red-Green-Refactor seguido, mudança de comportamento foi feita sem rede de segurança — DESVIO.'
 ---
 
 # TDD

@@ -1,6 +1,6 @@
 ---
 name: naming-structure-java
-description: Padrão de nomenclatura, estrutura e ambiente para projetos Java quando não houver convenção local mais específica. Use quando criar/alterar projeto Java, módulos Maven/Gradle, serviços Spring Boot, bibliotecas ou CLIs. Palavras-gatilho: "Java", "Maven", "Gradle", "Spring", "Spring Boot", "JUnit", "pom.xml", "build.gradle", `.java`. Garante: `PascalCase` para classes/records/enums/interfaces, `camelCase` para métodos/parâmetros, `UPPER_SNAKE_CASE` para `static final`; layout Maven/Gradle padrão (`src/main/java`, `src/test/java`); testes com sufixo `Test`/`IT`; Checkstyle + Spotless como linter/formatter; nome de pacote reflete domínio (sufixos `cli`/`api`/`rest` só em módulos de entrega como `payments-api`).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos Java quando não houver convenção local mais específica. Use quando criar/alterar projeto Java, módulos Maven/Gradle, serviços Spring Boot, bibliotecas ou CLIs. Palavras-gatilho: "Java", "Maven", "Gradle", "Spring", "Spring Boot", "JUnit", "pom.xml", "build.gradle", `.java`. Garante: `PascalCase` para classes/records/enums/interfaces, `camelCase` para métodos/parâmetros, `UPPER_SNAKE_CASE` para `static final`; layout Maven/Gradle padrão (`src/main/java`, `src/test/java`); testes com sufixo `Test`/`IT`; Checkstyle + Spotless como linter/formatter; nome de pacote reflete domínio (sufixos `cli`/`api`/`rest` só em módulos de entrega como `payments-api`).'
 ---
 
 # Java Naming And Structure
@@ -36,3 +36,16 @@ Use esta rule ao criar ou reorganizar projetos Java, servicos, bibliotecas ou CL
 - Use Maven ou Gradle conforme o projeto existente.
 - Se nao houver padrao, escolha uma ferramenta de build e declare comandos de teste e build.
 - Linter/formatter padrao: `Checkstyle` (lint de estilo + convencoes) e `Spotless` com `google-java-format` (formatador automatico). Configure ambos via plugin Maven/Gradle e declare tasks de `lint`/`format` (`mvn checkstyle:check` + `mvn spotless:check`/`spotless:apply` ou equivalentes Gradle). Para analise estatica adicional, considere `SpotBugs` ou `Error Prone`. Em projeto novo, instale pelo menos um linter.
+
+## Checklist
+
+- `PascalCase` em classes, records, enums e interfaces; `camelCase` em metodos, parametros e campos; `UPPER_SNAKE_CASE` em constantes `static final`.
+- Pacotes em minusculas, sem hifen, em dominio reverso quando houver dominio organizacional.
+- Nome de pacote e de modulo reflete o dominio; `cli`, `api`, `web` e `rest` so em modulo de entrega separado.
+- Layout padrao presente: `src/main/java`, `src/main/resources`, `src/test/java` e `src/test/resources`.
+- Pacotes organizados por dominio, feature ou bounded context antes de por tipo tecnico.
+- Dominio sem dependencia de framework; em Spring, controllers, configuration e persistence fora do pacote de dominio.
+- `pom.xml`, `build.gradle` ou `settings.gradle` na raiz do modulo.
+- Checkstyle e Spotless configurados por plugin, com tasks de `lint` e `format` declaradas e executadas.
+- Testes com sufixo `Test` ou `IT`, e a suite executada.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

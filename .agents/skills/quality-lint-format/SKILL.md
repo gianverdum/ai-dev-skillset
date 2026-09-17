@@ -1,6 +1,6 @@
 ---
 name: quality-lint-format
-description: OBRIGATORIO antes de encerrar tarefa que tocou código. Garantir boas práticas via linter e formatter da stack. Use sempre que o agente criar, alterar, corrigir, refatorar ou revisar código; antes de encerrar a tarefa, rodar lint e formatter, corrigir apontamentos, não deixar avisos pendentes. Palavras-gatilho: "lint", "format", "estilo de código", "eslint", "biome", "ruff", "prettier", "clippy", "golangci-lint", "fix do lint". Garante que script `lint` invoque o linter REAL (não alias de `typecheck`/`build`), que avisos não sejam silenciados sem justificativa, e que tarefa não seja declarada concluída com lint vermelho. Sem lint passando limpo + format aplicado, tarefa de código está incompleta — DESVIO.
+description: 'OBRIGATORIO antes de encerrar tarefa que tocou código. Garantir boas práticas via linter e formatter da stack. Use sempre que o agente criar, alterar, corrigir, refatorar ou revisar código; antes de encerrar a tarefa, rodar lint e formatter, corrigir apontamentos, não deixar avisos pendentes. Palavras-gatilho: "lint", "format", "estilo de código", "eslint", "biome", "ruff", "prettier", "clippy", "golangci-lint", "fix do lint". Garante que script `lint` invoque o linter REAL (não alias de `typecheck`/`build`), que avisos não sejam silenciados sem justificativa, e que tarefa não seja declarada concluída com lint vermelho. Sem lint passando limpo + format aplicado, tarefa de código está incompleta — DESVIO.'
 ---
 
 # Lint e Formatter

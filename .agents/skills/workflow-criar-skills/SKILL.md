@@ -1,11 +1,13 @@
 ---
 name: workflow-criar-skills
-description: Criar, atualizar ou endurecer skills neste projeto a partir do template local e do padrão de nomes com prefixo por tópico. Use quando o usuário pedir para criar, adicionar, atualizar, calibrar ou padronizar uma skill em `.agents/skills`, incluindo a sincronização dos providers Claude, Cursor, GitHub e Gemini. Aplica diretrizes de design baseadas em findings reais do projeto: description forte, anti-padrões detectáveis mecanicamente, output verificável e auto-verificação.
+description: 'Criar, atualizar ou endurecer skills neste projeto a partir do template local e do padrão de nomes com prefixo por tópico. Use quando o usuário pedir para criar, adicionar, atualizar, calibrar ou padronizar uma skill em `.agents/skills`, incluindo a sincronização dos providers Claude, Cursor, GitHub e Gemini. Aplica diretrizes de design baseadas em findings reais do projeto: description forte, anti-padrões detectáveis mecanicamente, output verificável e auto-verificação.'
 ---
 
 # Criar / Atualizar Skills
 
 `.agents/skills/` é a fonte de verdade. Os providers (`.claude/`, `.cursor/`, `.gemini/`, `.github/`) são symlinks sincronizados pelo script.
+
+Skill é **procedimento**: como executar um tipo de tarefa. Para **convenção** — o que vale sempre, independente da tarefa —, o arquivo é uma rule em `.agents/rules`, e o fluxo está em `workflow-criar-rules`.
 
 ## Fluxo
 

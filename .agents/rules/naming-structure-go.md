@@ -1,6 +1,6 @@
 ---
 name: naming-structure-go
-description: Padrão de nomenclatura, estrutura e ambiente para projetos Go quando não houver convenção local mais específica. Use quando criar/alterar projeto Go, pacotes, serviços, CLIs ou bibliotecas. Palavras-gatilho: "Go", "Golang", "go.mod", "cmd/", "internal/", "go test", "gofmt", "golangci-lint", `.go`. Garante: pacotes em minúsculas curtas sem underscore, `camelCase` não-exportado e `PascalCase` exportado; layout `cmd/<binário>/main.go` + `internal/<pacote>`; tests colocalizados (`foo_test.go`); `golangci-lint` como linter (não só `go vet`); `go.mod` + `go.sum`; nome do pacote reflete domínio (sufixos `cli`/`api`/`grpc` só em `cmd/<nome>-<entrega>/`).
+description: 'Padrão de nomenclatura, estrutura e ambiente para projetos Go quando não houver convenção local mais específica. Use quando criar/alterar projeto Go, pacotes, serviços, CLIs ou bibliotecas. Palavras-gatilho: "Go", "Golang", "go.mod", "cmd/", "internal/", "go test", "gofmt", "golangci-lint", `.go`. Garante: pacotes em minúsculas curtas sem underscore, `camelCase` não-exportado e `PascalCase` exportado; layout `cmd/<binário>/main.go` + `internal/<pacote>`; tests colocalizados (`foo_test.go`); `golangci-lint` como linter (não só `go vet`); `go.mod` + `go.sum`; nome do pacote reflete domínio (sufixos `cli`/`api`/`grpc` só em `cmd/<nome>-<entrega>/`).'
 ---
 
 # Go Naming And Structure
@@ -38,3 +38,16 @@ Use esta rule ao criar ou reorganizar projetos Go, servicos, CLIs ou bibliotecas
 - Formate com `gofmt` ou `go fmt ./...`.
 - Linter padrao: `golangci-lint` (agrega `vet`, `staticcheck`, `errcheck`, `ineffassign` e outros). Instale e configure `.golangci.yml` em projeto novo. Mantenha `go vet ./...` como validacao minima quando `golangci-lint` nao puder ser instalado.
 - Mantenha dependencias em `go.mod` e `go.sum`.
+
+## Checklist
+
+- Pacotes em minusculas curtas, sem underscore, hifen ou plural desnecessario.
+- Exportado em `PascalCase` e nao exportado em `camelCase`, lendo bem com o nome do pacote.
+- Nome do pacote reflete o dominio; sufixo de entrega aparece so em `cmd/<nome>-<entrega>/`.
+- `go.mod` na raiz do modulo, com `go.sum` versionado.
+- Executavel em `cmd/<nome>/main.go`; codigo privado em `internal/`; `pkg/` so quando ha API reutilizavel real.
+- Teste junto ao pacote testado, em `<arquivo>_test.go`.
+- Nenhum pacote generico `common`, `utils`, `helpers` ou `models` quando ha responsabilidade mais clara.
+- `go fmt ./...` aplicado; `golangci-lint` configurado em `.golangci.yml`, ou `go vet ./...` como minimo justificado.
+- `go test ./...` executado.
+- Identificadores, testes, comentarios e logs estruturados estao em ingles, conforme `.agents/rules/coding-language-english.md`.

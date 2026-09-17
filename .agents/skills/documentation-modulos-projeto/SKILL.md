@@ -1,6 +1,6 @@
 ---
 name: documentation-modulos-projeto
-description: Criar e manter documentação clara e enxuta do projeto e de seus módulos. OBRIGATORIO ao iniciar ou alterar qualquer aplicação, CLI, serviço, módulo, biblioteca, arquitetura, estrutura de pastas, configuração, comandos de uso ou tecnologias do projeto. Palavras-gatilho: "crie", "inicie", "adicione módulo", "extraia BC", "novo projeto", "novo módulo", "novo serviço", "reorganize", "refatore", "altere estrutura". Garante que README da raiz e de cada módulo de aplicação exista e reflita o estado atual; submódulos de camada (domain/application/interface) NÃO recebem README próprio. Sem README atualizado, módulo novo está incompleto — DESVIO.
+description: 'Criar e manter documentação clara e enxuta do projeto e de seus módulos. OBRIGATORIO ao iniciar ou alterar qualquer aplicação, CLI, serviço, módulo, biblioteca, arquitetura, estrutura de pastas, configuração, comandos de uso ou tecnologias do projeto. Palavras-gatilho: "crie", "inicie", "adicione módulo", "extraia BC", "novo projeto", "novo módulo", "novo serviço", "reorganize", "refatore", "altere estrutura". Garante que README da raiz e de cada módulo de aplicação exista e reflita o estado atual; submódulos de camada (domain/application/interface) NÃO recebem README próprio. Sem README atualizado, módulo novo está incompleto — DESVIO.'
 ---
 
 # Documentação de Projeto e Módulos
